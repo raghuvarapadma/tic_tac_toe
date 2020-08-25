@@ -31,7 +31,7 @@ def player_input():
     return user_marker_choice
 
 
-def choose_position(cp):
+def choose_position(cp, player_dict):
     """
     Asks the user what position they want to place their marker at
     :return: returns user's choice of position
@@ -45,7 +45,7 @@ def choose_position(cp):
                 player = "2"
             elif cp % 2 == 1:
                 player = "1"
-            user_position_choice = int(input("Player " + player + " please select a position: "))
+            user_position_choice = int(input(player_dict["Player " + player] + " please select a position: "))
         except ValueError:
             print("Please enter a valid input!")
             continue
@@ -141,7 +141,7 @@ def board_check(board):
     return True
 
 
-def player_choice(board, cp):
+def player_choice(board, cp, player_dict):
     """
     Asks the player where they would like to place their marker on the board
     :param cp: variable which keeps track of player's turn
@@ -153,7 +153,7 @@ def player_choice(board, cp):
     pos_available = False
     while not pos_available:
         while True:
-            position = choose_position(cp)
+            position = choose_position(cp, player_dict)
             if position not in range(1, 10):
                 print("Please enter in a position from 1 through 9!")
                 continue
